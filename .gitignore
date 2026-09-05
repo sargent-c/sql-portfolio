@@ -1,0 +1,22 @@
+# VS Code settings (optional)
+.vscode/
+
+# OS-specific junk
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Python cache (in case you later add scripts)
+__pycache__/
+*.pyc
+
+# DuckDB temporary files (if you ever export or test things)
+*.duckdb.wal
+*.db.bak
+
+# Logs
+*.log
