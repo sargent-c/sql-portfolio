@@ -1,9 +1,9 @@
 -- Portfolio Query 06: Highest-value countries ranked
 -- Purpose: Produce a ranked list of countries based on total customer account value
 -- Data source: customer table (c_acctbal, c_nationkey) joined to nation
--- Method: Aggregate customer account balances by country, then apply RANK() to order
---         countries by total value
--- Note: The TPC-H dataset distributes customer balances uniformly across countries,
+-- Method: Aggregate customer account balances by country, then apply RANK() to 
+--         order countries by total value
+-- Note: The TPC-H dataset distributes customer balances uniformly across countries, 
 --       so rankings reflect small variations rather than meaningful business differences
 
 WITH customer_value_by_country AS (

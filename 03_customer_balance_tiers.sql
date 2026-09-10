@@ -1,7 +1,9 @@
 -- Portfolio Query 03: Customer account balance tiering
--- Purpose: Categorize customers into high, medium, and low balance tiers for targeted marketing
+-- Purpose: Categorize customers into high, medium, and low balance tiers 
+--          for targeted marketing
 -- Data source: customer table (c_acctbal, c_mktsegment)
--- Method: Use CASE logic to assign each customer to a balance tier, then sort by account balance
+-- Method: Use CASE logic to assign each customer to a balance tier, then 
+--         sort by account balance
 
 SELECT 
     c_name AS customer_name,

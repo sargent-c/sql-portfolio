@@ -1,9 +1,10 @@
 -- Portfolio Query 02: Customer lifetime value (LTV) analysis
 -- Purpose: Calculate total spending and total orders per customer to identify 
 --          high-value segments
--- Data source: orders (o_totalprice, o_orderkey) joined to customer (c_custkey, c_mktsegment)
--- Method: Aggregate total spending and order count per customer using a CTE, then return
---         the top 10 by lifetime value
+-- Data source: orders (o_totalprice, o_orderkey) joined to 
+--              customer (c_custkey, c_mktsegment)
+-- Method: Aggregate total spending and order count per customer using a CTE, then 
+--         return the top 10 by lifetime value
 
 WITH customer_orders AS (
     SELECT 

@@ -2,8 +2,8 @@
 -- Purpose: rank all countries by total revenue generated
 -- Revenue source: lineitem (l_extendedprice * (1 - l_discount))
 -- Join path: lineitem → orders → customer → nation
--- Method: Aggregate revenue by country, then apply RANK() to rank countries by revenue
-
+-- Method: Aggregate revenue by country, then apply RANK() to rank 
+--         countries by revenue
 
 WITH revenue_by_country AS (
     SELECT

@@ -3,8 +3,8 @@
 -- Data source: customer table (c_acctbal, c_nationkey) joined to nation
 -- Method: Aggregate customer account balances by country, then sort by total value
 -- Note: The TPC-H sample dataset distributes customer balances uniformly across 
---       countries, so total values fall within a narrow range. This query demonstrates
---       aggregation logic rather than meaningful business variation.
+--       countries, so total values fall within a narrow range. This query 
+--       demonstrates aggregation logic rather than meaningful business variation.
 
 WITH customer_value_by_country AS (
     SELECT
