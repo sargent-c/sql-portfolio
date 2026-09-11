@@ -20,6 +20,6 @@ SELECT
     o_custkey AS customer_id,
     o_orderdate AS order_date,
     o_totalprice AS order_amount,
-    (o_totalprice - prev_amount) / NULLIF(prev_amount, 0) AS pct_change
+    (o_totalprice - prev_amount) / NULLIF(prev_amount, 0) AS pct_change_fraction
 FROM ordered
 ORDER BY o_custkey, o_orderdate;
