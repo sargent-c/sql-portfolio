@@ -17,7 +17,7 @@ FROM customer
 ```
 
 **Purpose:**  
-Provides a clean, minimal customer dataset containing only the fields required for downstream logic. This avoids carrying unused columns through the pipeline and keeps the transformation focused.
+Establishes the base customer information used in later steps.
 
 ---
 
