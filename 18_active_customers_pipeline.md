@@ -1,6 +1,6 @@
 # Active Customers Pipeline (TPC-H)
 
-This portfolio query identifies **active customers** — customers who have placed at least one order — and computes basic order‑level metrics. It demonstrates a common analytics engineering pattern using CTE structuring, a semi‑join with `EXISTS`, and simple aggregation.
+This query identifies **active customers** (customers who have placed at least one order) and computes basic order‑level metrics. It demonstrates a common analytics engineering pattern using CTE structuring, a semi‑join with `EXISTS`, and simple aggregation.
 
 ---
 
