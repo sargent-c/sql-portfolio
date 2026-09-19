@@ -1,36 +1,31 @@
-# Active Customers Pipeline (TPC-H)
+# Active Customers Pipeline
 
-This query identifies **active customers** (customers who have placed at least one order) and computes basic order‑level metrics. It demonstrates a common analytics engineering pattern using CTE structuring, a semi‑join with `EXISTS`, and simple aggregation.
+**Dataset:** TPC-H
 
----
-
-## 1. CTE: `customers`
-
-A staging CTE that selects core customer attributes used throughout the pipeline.
-
-```sql
-SELECT
-    c_custkey,
-    c_name,
-    c_acctbal
-FROM customer
-```
-
-**Purpose:**  
-Establishes the base customer information used in later steps.
+This query identifies **active customers** (customers who have placed at least one order) and enriches them with customer-level order metrics. It demonstrates a common analytics engineering pattern using CTEs, a semi-join implemented with `EXISTS`, aggregation, and dimensional enrichment.
 
 ---
 
-## 2. CTE: `active_customers`
+## Business Question
 
-Filters the customer dataset to include only customers who have placed at least one order, using the `EXISTS` semi‑join pattern.
+Which customers have placed orders, and what does their ordering activity look like?
+
+The resulting dataset combines customer attributes with summary metrics describing order volume and activity dates.
+
+---
+
+## Pipeline Structure
+
+## 1. CTE: active_customers
+
+Filters the customer table to include only customers who have placed at least one order.
 
 ```sql
 SELECT
     c.c_custkey,
     c.c_name,
     c.c_acctbal
-FROM customers c
+FROM customer c
 WHERE EXISTS (
     SELECT 1
     FROM orders o
@@ -38,14 +33,15 @@ WHERE EXISTS (
 )
 ```
 
-**Purpose:**  
-Identifies active customers by checking for the existence of at least one matching order. Using `EXISTS` avoids unnecessary joins and ensures efficient filtering without duplicating customer rows.
+**Purpose:**
+
+Uses the `EXISTS` semi-join pattern to identify active customers without creating duplicate customer rows through a join.
 
 ---
 
-## 3. CTE: `customer_order_metrics`
+## 2. CTE: customer_order_metrics
 
-Computes basic order‑level metrics for each active customer, including total number of orders and the date range of their ordering activity.
+Aggregates order activity at the customer level.
 
 ```sql
 SELECT
@@ -57,14 +53,20 @@ FROM orders o
 GROUP BY o.o_custkey
 ```
 
-**Purpose:**  
-Aggregates order data at the customer level, producing metrics that describe customer activity over time. These values enrich the active customer list with meaningful business information such as order volume and recency.
+**Purpose:**
+
+Creates customer-level metrics describing:
+- Total orders placed
+- First recorded order date
+- Most recent order date
+
+These metrics provide a simple view of customer engagement and purchasing history.
 
 ---
 
-## 4. CTE: `final`
+## Final Output
 
-Combines the active customer list with their computed order metrics to produce the final enriched dataset.
+The final query joins active customers with aggregated order metrics, producing one row per active customer.
 
 ```sql
 SELECT
@@ -77,36 +79,36 @@ SELECT
 FROM active_customers ac
 JOIN customer_order_metrics com
     ON ac.c_custkey = com.o_custkey
+ORDER BY com.total_orders DESC;
 ```
-
-**Purpose:**  
-Brings together customer attributes and order‑level metrics, producing a complete view of each active customer’s engagement. This final dataset is suitable for reporting, segmentation, or further downstream modeling.
 
 ---
 
-## Final Output
+## Analytics Engineering Concepts Demonstrated
 
-The final query returns each active customer along with their aggregated order metrics, producing a clean, analysis‑ready dataset.
-
-**Columns**
-- `c_custkey` — customer identifier  
-- `c_name` — customer name  
-- `c_acctbal` — account balance  
-- `total_orders` — number of orders placed  
-- `first_order_date` — earliest order date  
-- `most_recent_order_date` — latest order date  
-
-**Purpose:**  
-Provides a consolidated customer‑level output suitable for reporting, segmentation, or downstream modeling. This dataset represents the final stage of the pipeline, combining customer attributes with meaningful order activity metrics.
+- Common Table Expressions (CTEs)
+- Semi-joins using `EXISTS`
+- Customer-level aggregations
+- Metric generation with `COUNT()`, `MIN()`, and `MAX()`
+- Joining dimensional and aggregated data
+- Building modular SQL transformation pipelines
 
 ---
 
 ## Business Value
 
-This pipeline provides a clear view of customer engagement by identifying which customers are actively placing orders and summarizing their ordering behavior. These insights support a range of analytical needs, including customer segmentation, retention analysis, revenue forecasting, and operational reporting. By combining customer attributes with order activity metrics, the model helps highlight high‑value customers and informs data‑driven decision‑making across sales and customer management workflows.
+The resulting dataset provides a customer-centric view of ordering activity that can support:
+- Customer segmentation
+- Retention analysis
+- Identification of highly engaged customers
+- Operational reporting
+- Downstream analytical models
+
+By combining customer attributes with behavioural metrics, the model creates an analysis-ready dataset suitable for further exploration or reporting.
 
 ---
 
 ## Summary
 
-This pipeline provides a structured approach to identifying active customers and enriching them with meaningful order‑level metrics. By combining semi‑join filtering with aggregation and a final consolidation step, the model produces a clean, analysis‑ready dataset suitable for customer segmentation, retention analysis, and operational reporting. The CTE structure keeps each transformation focused and readable, illustrating a clear analytics engineering pattern for building modular SQL pipelines.
+This pipeline demonstrates a practical analytics engineering pattern: filtering a business entity using a semi-join (`EXISTS`), generating aggregate metrics, and combining those metrics into a final analytical dataset. The approach produces a concise, reusable customer model while keeping each transformation step focused and easy to understand.
+
