@@ -18,7 +18,7 @@ The resulting dataset combines customer attributes with summary metrics describi
 
 ## 1. CTE: active_customers
 
-Filters the customer table to include only customers who have placed at least one order.
+Filters the `customer` table to include only customers who have placed at least one order.
 
 ```sql
 SELECT
