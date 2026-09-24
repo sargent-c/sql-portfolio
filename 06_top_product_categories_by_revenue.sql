@@ -1,4 +1,4 @@
--- Portfolio Query 10: Top product categories by revenue
+-- Portfolio Query 06: Top product categories by revenue
 -- Purpose: Identify the highest-revenue product categories across all orders
 -- Data source: lineitem (transaction-level revenue) joined to part (product category)
 -- Method: Aggregate revenue by product category, then apply DENSE_RANK() to 

@@ -1,4 +1,4 @@
--- Portfolio Query 09: Date of highest transaction per customer
+-- Portfolio Query 05: Date of highest transaction per customer
 -- Purpose: Identify each customer's highest-value order and the date it occurred
 -- Data source: orders table (o_totalprice, o_orderdate, o_custkey)
 -- Method: Use ROW_NUMBER() with PARTITION BY to select each customer's single 

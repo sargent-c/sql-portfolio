@@ -1,4 +1,4 @@
--- Portfolio Query 18: Active Customers Pipeline (TPC-H)
+-- Portfolio Query 12: Active Customers Pipeline (TPC-H)
 -- Identifies customers who have placed at least one order
 -- and computes basic order metrics.
 

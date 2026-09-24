@@ -1,4 +1,4 @@
--- Portfolio Query 19: Customer Activity Segmentation (TPC-H)
+-- Portfolio Query 13: Customer Activity Segmentation (TPC-H)
 -- Segments customers as Active or Dormant using EXISTS and NOT EXISTS
 -- and enriches the results with customer-level order metrics.
 

@@ -1,4 +1,4 @@
--- Portfolio Query 13: Days until next order per customer
+-- Portfolio Query 08: Days until next order per customer
 -- Purpose: Measure the time gap between consecutive orders for each customer to
 --          understand purchase frequency and identify retention patterns. Also
 --          flag the final order in each customer's sequence.

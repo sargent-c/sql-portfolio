@@ -1,4 +1,4 @@
--- Portfolio Query 14: Customers who have never placed an order
+-- Portfolio Query 09: Customers who have never placed an order
 -- Purpose: Identify customers with no associated orders so sales teams can
 --          target outreach and understand gaps in customer engagement.
 -- Data source: customer table (c_custkey, c_name, c_address, c_phone)

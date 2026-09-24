@@ -1,4 +1,4 @@
--- Portfolio Query 12: Percentage change in order value per customer
+-- Portfolio Query 07: Percentage change in order value per customer
 -- Purpose: Measure how each customer's spending changes from one order to the next,
 --          expressed as a percentage to capture relative growth or decline
 -- Data source: orders table (o_totalprice, o_orderdate, o_custkey)

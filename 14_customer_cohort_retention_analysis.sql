@@ -1,4 +1,4 @@
--- Portfolio Query 20: Customer Cohort Retention Analysis (TPC-H)
+-- Portfolio Query 14: Customer Cohort Retention Analysis (TPC-H)
 -- Groups customers into monthly cohorts and measures customer retention
 -- over time using cohort size and retention rate metrics.
 

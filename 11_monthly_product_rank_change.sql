@@ -1,4 +1,4 @@
--- Portfolio Query 17: Monthly Product Rank Change (TPC-H)
+-- Portfolio Query 11: Monthly Product Rank Change (TPC-H)
 -- Description:
 -- Computes monthly product sales, ranks products within each month,
 -- and calculates rank change compared to the previous month.

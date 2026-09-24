@@ -1,4 +1,4 @@
--- Portfolio query 08: Top performing country by region
+-- Portfolio query 04: Top performing country by region
 -- Purpose: Identify the highest-revenue country within each global region
 -- Revenue source: lineitem (l_extendedprice * (1 - l_discount))
 -- Join path: lineitem → orders → customer → nation → region

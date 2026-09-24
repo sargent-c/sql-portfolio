@@ -1,4 +1,4 @@
--- Portfolio Query 16: Top 10 best-selling products by quantity sold
+-- Portfolio Query 10: Top 10 best-selling products by quantity sold
 -- Purpose: Identify the products that sell the most units, supporting inventory
 --          planning, demand forecasting, and product strategy.
 -- Data source: lineitem (l_quantity, l_partkey), part (p_partkey, p_name)

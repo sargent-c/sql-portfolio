@@ -1,4 +1,4 @@
--- Portfolio Query 07: Countries by revenue
+-- Portfolio Query 03: Countries by revenue
 -- Purpose: rank all countries by total revenue generated
 -- Revenue source: lineitem (l_extendedprice * (1 - l_discount))
 -- Join path: lineitem → orders → customer → nation

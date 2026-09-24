@@ -1,4 +1,4 @@
--- Portfolio Query 02: Customer lifetime value (LTV) analysis
+-- Portfolio Query 01: Customer lifetime value (LTV) analysis
 -- Purpose: Calculate total spending and total orders per customer to identify 
 --          high-value segments
 -- Data source: orders (o_totalprice, o_orderkey) joined to 
