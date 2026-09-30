@@ -4,7 +4,7 @@
 
 This pipeline model performs customer cohort retention analysis by grouping customers into monthly acquisition cohorts and measuring retention over time. It demonstrates a common analytics engineering pattern using date-based transformations, aggregations, and a multi-stage CTE pipeline.
 
-# Business Question
+## Business Question
 
 How effectively are customer cohorts retained over time after their initial acquisition?
 
@@ -74,7 +74,7 @@ Uses the DATE_DIFF() function to compare `cohort_month` with `activity_month` an
 
 ---
 
-# 4. CTE: cohort_sizes
+## 4. CTE: cohort_sizes
 
 Counts the number of customers in each original cohort to provide cohort sizes which will be fed into the final query.
 
@@ -89,7 +89,7 @@ GROUP BY cc.cohort_month
 
 Uses COUNT() to calculate the original population size of each cohort. The resulting dataset acts as a lookup table that is later used to calculate retention rates.
 
-# Final Output
+## Final Output
 
 The final query provides a summary of the percentage of customers retained from each cohort.  The initial cohort month and number of months since the first order are displayed, along with a count of the active customers in following months, using `DISTINCT` to ensure that the count is not inflated by customers with multiple orders in any given month. The final column shows retention as a rate, allowing for fair comparison between cohorts of very different sizes.
 
