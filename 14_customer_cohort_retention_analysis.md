@@ -126,6 +126,7 @@ ORDER BY
 
 - Common Table Expressions (CTEs)
 - Multi-stage analytics pipeline design
+- Transformations at multiple data grains
 - Date functions: `DATE_TRUNC()` and `DATE_DIFF()`
 - Cohort modelling and retention analysis
 - Aggregations using `COUNT()`
