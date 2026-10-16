@@ -92,7 +92,7 @@ The amounts in the `previous_month_customers` column are subtracted from the `ne
 
 ---
 
-## Final Output:
+## Final Output
 
 The outer SELECT statement returns the data from the final `customer_growth_metrics` CTE, ordered by `acquisition_month`.
 
@@ -103,7 +103,7 @@ SELECT
     mom_growth,
     total_new_customers_to_date
 FROM customer_growth_metrics
-ORDER BY acquisition_month ASC
+ORDER BY acquisition_month
 ```
 
 **Example Output:**
