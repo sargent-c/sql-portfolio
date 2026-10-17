@@ -31,7 +31,7 @@ GROUP BY o_custkey
 
 **Purpose:**
 
-Uses the MIN() function to identify the first recorded order date for each customer. The resulting date is truncated to month level using DATE_TRUNC(), assigning each customer to an acquisition cohort.
+Uses the `MIN()` function to identify the first recorded order date for each customer. The resulting date is truncated to month level using `DATE_TRUNC()`, assigning each customer to an acquisition cohort.
 
 ---
 
@@ -50,7 +50,7 @@ FROM orders
 
 **Purpose:**
 
-Uses SELECT DISTINCT with DATE_TRUNC() to return a unique list of months in which each customer placed at least one order. This removes duplicate activity records within the same month.
+Uses `SELECT DISTINCT` with `DATE_TRUNC()` to return a unique list of months in which each customer placed at least one order. This removes duplicate activity records within the same month.
 
 ---
 
@@ -76,7 +76,7 @@ JOIN customer_activity_months cam
 
 **Purpose:**
 
-Uses the DATE_DIFF() function to compare `cohort_month` with `activity_month` and returns the result as `months_since_first_order`.
+Uses the `DATE_DIFF()` function to compare `cohort_month` with `activity_month` and returns the result as `months_since_first_order`.
 
 ---
 
@@ -96,7 +96,7 @@ GROUP BY cc.cohort_month
 
 **Purpose:**
 
-Uses COUNT() to calculate the original population size of each cohort. The resulting dataset acts as a lookup table that is later used to calculate retention rates.
+Uses `COUNT()` to calculate the original population size of each cohort. The resulting dataset acts as a lookup table that is later used to calculate retention rates.
 
 ## Final Output
 
