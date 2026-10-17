@@ -27,6 +27,8 @@ FROM orders
 GROUP BY o_custkey
 ```
 
+**Output grain:** One row per customer.
+
 **Purpose:**
 
 Uses the MIN() function to identify the first recorded order date for each customer. The resulting date is truncated to month level using DATE_TRUNC(), assigning each customer to an acquisition cohort.
@@ -43,6 +45,8 @@ SELECT DISTINCT
     DATE_TRUNC('month', o_orderdate) AS activity_month
 FROM orders
 ```
+
+**Output grain:** One row per customer-month combination.
 
 **Purpose:**
 
@@ -68,6 +72,8 @@ JOIN customer_activity_months cam
   ON cc.o_custkey = cam.o_custkey
 ```
 
+**Output grain:** One row per customer-retention-period combination.
+
 **Purpose:**
 
 Uses the DATE_DIFF() function to compare `cohort_month` with `activity_month` and returns the result as `months_since_first_order`.
@@ -85,6 +91,9 @@ SELECT
 FROM customer_cohorts cc
 GROUP BY cc.cohort_month
 ```
+
+**Output grain:** One row per cohort month.
+
 **Purpose:**
 
 Uses COUNT() to calculate the original population size of each cohort. The resulting dataset acts as a lookup table that is later used to calculate retention rates.
@@ -119,6 +128,8 @@ ORDER BY
     cr.cohort_month,
     cr.months_since_first_order;
 ```
+
+**Output grain:** One row per cohort-retention-period combination.
 
 ---
 
