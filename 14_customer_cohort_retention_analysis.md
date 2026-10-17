@@ -131,6 +131,18 @@ ORDER BY
 
 **Output grain:** One row per cohort-retention-period combination.
 
+**Example Output:**
+
+|cohort_month|months_since_first_order|active_customers|cohort_size|retention_rate|
+| ---------- | ---------------------- | -------------- | --------- | ------------ |
+|1992-01-01 00:00:00|0|17409|17409|1.0|
+|1992-01-01 00:00:00|1|3117|17409|0.179|
+|1992-01-01 00:00:00|2|3342|17409|0.192|
+|1992-01-01 00:00:00|3|3231|17409|0.1856|
+|1992-01-01 00:00:00|4|3379|17409|0.1941|
+|1992-01-01 00:00:00|5|3225|17409|0.1852|
+|1992-01-01 00:00:00|6|3284|17409|0.1886|
+
 ---
 
 ## Analytics Engineering Concepts Demonstrated
