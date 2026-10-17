@@ -22,6 +22,8 @@ FROM orders
 GROUP BY o_custkey
 ```
 
+**Output grain:** One row per customer.
+
 **Purpose:**
 
 Uses `MIN()` on `o_orderdate` to determine the date of first purchase for each customer. Applies `DATE_TRUNC()` to the date of first purchase to round it down to the month level and assign each customer to an `acquisition_month`.
@@ -39,6 +41,8 @@ SELECT
 FROM customer_acquisition_month
 GROUP BY acquisition_month
 ```
+
+**Output grain:** One row per month.
 
 **Purpose:**
 
@@ -59,6 +63,8 @@ SELECT
     ) AS previous_month_customers
 FROM new_customers_per_month
 ```
+
+**Output grain:** One row per month.
 
 **Purpose:**
 
@@ -86,9 +92,11 @@ SELECT
 FROM customer_acquisition_history
 ```
 
+**Output grain:** One row per month.
+
 **Purpose:**
 
-The amounts in the `previous_month_customers` column are subtracted from the `new_customers` column and divided by `previous_month_customers` to calculate the monthly percentage growth (shown as a positive or negative decimal fraction, rounded to 4 decimal places). The window function `SUM() OVER (...)` is applied to `new_customers` using the frame clause `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` to calculate a running total of all new customers acquired between the start of the time series and the current row.
+The amounts in the `previous_month_customers` column are subtracted from the `new_customers` column and divided by `previous_month_customers` to calculate the monthly percentage growth (shown as a positive or negative decimal fraction, rounded to 4 decimal places). The window function `SUM() OVER (...)` is applied to `new_customers` using the frame clause `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` to calculate a running total of all new customers acquired between the start of the time series and the current row. Although the running-total window function references multiple months, the dataset remains at monthly grain because each row still represents a single acquisition month.
 
 ---
 
