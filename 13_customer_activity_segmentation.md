@@ -132,6 +132,20 @@ LEFT JOIN customer_order_metrics com
 ORDER BY COALESCE(com.total_orders, 0) DESC;
 ```
 
+**Example output:**
+
+|c_custkey|c_name|c_acctbal|customer_status|total_orders|first_order_date|most_recent_order_date|
+| --------| -----| ------- | ------------- | ---------- | -------------- | -------------------- |
+|102022|"Customer#000102022"|1260.45|Active|41|1992-01-05|1998-05-21|
+|3451|"Customer#000003451"|1720.73|Active|41|1992-01-11|1998-07-20|
+|102004|"Customer#000102004"|6763.33|Active|41|1992-03-19|1998-06-19|
+|117082|"Customer#000117082"|8988.82|Active|40|1992-02-01|1998-06-14|
+|79300|"Customer#000079300"|-897.71|Active|40|1992-05-06|1998-05-25|
+|122623|"Customer#000122623"|7211.14|Active|40|1992-05-21|1998-07-22|
+|143500|"Customer#000143500"|7490.13|Active|39|1992-01-16|1998-05-15|
+
+---
+
 ## Analytics Engineering Concepts Demonstrated
 
 - Common Table Expressions (CTEs)
