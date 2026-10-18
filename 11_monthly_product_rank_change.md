@@ -2,7 +2,7 @@
 
 **Dataset:** TPC-H
 
-This query computes **monthly product rankings** based on units sold and measures **rank change over time**. It demonstrates a classic analytics engineering pattern using chained CTEs, window functions, and time-series logic.
+This query computes **monthly product rankings** based on units sold and measures **month-over-month rank movement**. It demonstrates a classic analytics engineering pattern using chained CTEs, window functions, and time-series logic.
 
 ---
 
@@ -16,7 +16,7 @@ The resulting dataset highlights monthly leaders while capturing upward or downw
 
 ## Pipeline Structure
 
-## 1. CTE: `monthly_sales`
+## 1. CTE: monthly_sales
 
 Aggregates product sales at the monthly level.
 
@@ -34,7 +34,8 @@ Creates a monthly sales summary for each product by rolling transaction-level da
 
 ---
 
-## 2. CTE: `monthly_rank`
+## 2. CTE: monthly_rank
+
 Ranks products within each month based on units sold.
 
 ```sql
@@ -50,11 +51,12 @@ FROM monthly_sales
 ```
 
 **Purpose:** 
-Uses the RANK() window function to assign a sales rank to each product within a given month, allowing direct comparison between products during the same reporting period.
+Uses the `RANK()` window function to assign a sales rank to each product within a given month, allowing direct comparison between products during the same reporting period.
 
 ---
 
-## 3. CTE: `rank_change`
+## 3. CTE: rank_change
+
 Calculates ranking changes relative to the previous month.
 
 ```sql
@@ -70,11 +72,12 @@ FROM monthly_rank
 ```
 
 **Purpose:** 
-Uses the LAG() window function to retrieve each product's rank from the previous month. This enables month-over-month trend analysis and identifies products that are gaining or losing position in the rankings. Products appearing for the first time in the time series will have a NULL previous rank, indicating that no prior monthly comparison exists.
+Uses the `LAG()` window function to retrieve each product's rank from the previous month. This enables month-over-month trend analysis and identifies products that are gaining or losing position in the rankings. Products appearing for the first time in the time series will have a `NULL` previous rank, indicating that no prior monthly comparison exists.
 
 ---
 
 ## Final Output
+
 The final query joins ranking information to product names and filters to the top 10 products per month.
 
 ```sql
@@ -90,7 +93,23 @@ JOIN part p
 WHERE rc.month_rank <= 10
 ORDER BY rc.month, rc.month_rank;
 ```
+
 The output focuses on the top 10 ranked products for each month while showing how their positions have changed compared to the previous month.
+
+**Example output:**
+
+|p_name|month|month_rank|previous_rank|rank_change|
+| ---- | --- | -------- | ----------- | --------- |
+|burnished thistle honeydew sienna green|1992-01-01 00:00:00|1|NULL|NULL|
+|salmon dim blush navajo violet|1992-01-01 00:00:00|2|NULL|NULL|
+|rosy violet royal lawn firebrick|1992-02-01 00:00:00|1|2157|2156|
+|chiffon firebrick rosy cornflower sandy|1992-02-01 00:00:00|2|NULL|NULL|
+|gainsboro burnished purple plum frosted|1992-03-01 00:00:00|1|8258|8257|
+|dodger burlywood mint royal linen|1992-03-01 00:00:00|2|19836|19834|
+
+
+**Note:**
+Only the first two ranked products for each month are shown here in order to include numerical values for `previous_rank` and `rank_change`. Large rank-change values indicate products that moved from relatively low rankings in the previous month into the current month's top-selling products.
 
 ---
 
@@ -99,10 +118,11 @@ The output focuses on the top 10 ranked products for each month while showing ho
 - Multi-stage SQL transformation pipelines
 - Time-series aggregation
 - Window functions
-- RANK() for within-group ranking
-- LAG() for period-over-period comparison
+- `RANK()` for within-group ranking
+- `LAG()` for period-over-period comparison
 - Dimensional enrichment through joins
 - Trend and performance analysis
+- Grain transformation from transaction-level data to product-month summaries
 
 ---
 
