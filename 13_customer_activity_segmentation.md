@@ -2,7 +2,7 @@
 
 **Dataset:** TPC-H
 
-This query segments customers into **Active** and **Dormant** categories and adds customer order metrics. It uses a chained CTE pipeline, semi-join and anti-join patterns implemented with EXISTS and NOT EXISTS, UNION ALL, and aggregation to enrich the final customer dataset.
+This query segments customers into **Active** and **Dormant** categories and adds customer order metrics. It uses a chained CTE pipeline, semi-join and anti-join patterns implemented with `EXISTS` and `NOT EXISTS`, `UNION ALL`, and aggregation to enrich the final customer dataset.
 
 ---
 
@@ -84,7 +84,7 @@ SELECT
 ```
 **Purpose:**
 
-Uses UNION ALL to combine the active and dormant customer populations into a single dataset, adding a status column to classify each customer as "Active" or "Dormant".
+Uses `UNION ALL` to combine the active and dormant customer populations into a single dataset, adding a status column to classify each customer as "Active" or "Dormant".
 
 ---
 
@@ -115,7 +115,7 @@ These metrics provide a simple view of customer engagement and purchasing histor
 
 ## Final Output
 
-The final query joins active and dormant customers with aggregated order metrics. The use of a `LEFT JOIN` ensures that dormant customers who do not appear in the `orders` table are included in the output. The `COALESCE()` function is applied to the output for the `total_orders` column in order to display NULL values as 0.
+The final query joins active and dormant customers with aggregated order metrics. The use of a `LEFT JOIN` ensures that dormant customers who do not appear in the `orders` table are included in the output. The `COALESCE()` function is applied to the output for the `total_orders` column in order to display `NULL` values as 0.
 
 ```sql
 SELECT
