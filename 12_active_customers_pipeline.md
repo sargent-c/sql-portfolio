@@ -82,6 +82,18 @@ JOIN customer_order_metrics com
 ORDER BY com.total_orders DESC;
 ```
 
+**Example output:**
+
+|c_custkey|c_name|c_acctbal|total_orders|first_order_date|most_recent_order_date|
+| ------- | ---- | ------- | ---------- | -------------- | -------------------- |
+|102022|"Customer#000102022"|1260.45|41|1992-01-05|1998-05-21|
+|102004|"Customer#000102004"|6763.33|41|1992-03-19|1998-06-19|
+|3451|"Customer#000003451"|1720.73|41|1992-01-11|1998-07-20|
+|122623|"Customer#000122623"|7211.14|40|1992-05-21|1998-07-22|
+|117082|"Customer#000117082"|8988.82|40|1992-02-01|1998-06-14|
+|79300|"Customer#000079300"|-897.71|40|1992-05-06|1998-05-25|
+|69682|"Customer#000069682"|8778.43|39|1992-05-22|1998-04-21|
+
 ---
 
 ## Analytics Engineering Concepts Demonstrated
